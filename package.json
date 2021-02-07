@@ -1,0 +1,16 @@
+{
+  "name": "cmq-cli",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "testcli": "./index.js"
+  },
+  "dependencies": {
+    "commander": "^7.0.0",
+    "inquirer": "^7.3.3"
+  },
+  "devDependencies": {
+    "chalk": "^4.1.0"
+  }
+}
