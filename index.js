@@ -30,7 +30,7 @@ program
     .description('选择模板项目')
     .action(async (filename) => {
       const res = await inquirer.prompt(prompList)  // 命令行选择的选择的选项
-      copyDir(resolvePath(`./template/${res.template}`),resolvePath(`./${filename}`));
+      copyDir(resolvePath(`./template/${res.template}`), path.resolve(`${process.cwd()}/${filename}`));
     })
 
 // 处理命令行输入的参数

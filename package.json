@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "bin": {
-    "testcli": "./index.js"
+    "cmqcli": "./index.js"
   },
   "dependencies": {
     "commander": "^7.0.0",
