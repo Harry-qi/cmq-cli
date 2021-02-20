@@ -1,6 +1,6 @@
 {
   "name": "cmq_cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "index.js",
   "bin": {
@@ -8,7 +8,10 @@
   },
   "dependencies": {
     "commander": "^7.0.0",
-    "inquirer": "^7.3.3"
+    "download-git-repo": "^3.0.2",
+    "inquirer": "^7.3.3",
+    "io-spin": "^0.4.1",
+    "log-symbols": "^4.0.0"
   },
   "devDependencies": {
     "chalk": "^4.1.0"

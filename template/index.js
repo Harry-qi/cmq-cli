@@ -23,7 +23,19 @@ function getFiles(filePath){
 
 let template1Src = getFiles(filePath1)
 let template2Src = getFiles(filePath2)
+// git下载模板
+let downloadList = [
+  {
+    name: 'vue-element-admin',
+    src: "https://github.com:PanJiaChen/vue-element-admin#master"
+  },
+  {
+    name:'ts-vue',
+    src: "https://github.com:easy-wheel/ts-vue#master",
+  }
+]
 module.exports = [
   { name: 'mobile-template', src: template1Src },
-  { name: 'vue-admin-template', src: template2Src }
+  { name: 'vue-admin-template', src: template2Src },
+    ...downloadList
 ]
