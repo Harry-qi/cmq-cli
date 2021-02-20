@@ -1,5 +1,5 @@
 {
-  "name": "cmq-cli",
+  "name": "cmq_cli",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
