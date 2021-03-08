@@ -54,6 +54,7 @@
 
 <script>
 import { validUsername } from '@/utils/validate'
+import { setToken } from '@/utils/auth'
 
 export default {
   name: 'Login',
@@ -109,15 +110,13 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
+          if (this.loginForm.username === 'admin' && this.loginForm.password === '111111') {
+            setToken('admin')
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
-          }).catch(() => {
-            this.loading = false
-          })
-        } else {
-          console.log('error submit!!')
-          return false
+          } else {
+            this.$message.error('账号密码错误！')
+          }
         }
       })
     }

@@ -1,24 +1,10 @@
 import request from '@/utils/request'
-
-export function login(data) {
-  return request({
-    url: '/user/login',
-    method: 'post',
-    data
-  })
+const index = {
+  // 登
+  login(data) {
+    return request.post('/api/manage/user/login', data)
+  }
 }
-
-export function getInfo(token) {
-  return request({
-    url: '/user/info',
-    method: 'get',
-    params: { token }
-  })
-}
-
-export function logout() {
-  return request({
-    url: '/user/logout',
-    method: 'post'
-  })
+export {
+  index
 }
