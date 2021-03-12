@@ -1,12 +1,20 @@
 <template>
   <div class="dashboard-container">
     <div>首页</div>
+    {{ name }}
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  name: 'Dashboard'
+  name: 'Dashboard',
+  computed: {
+    ...mapGetters([
+      'name'
+    ])
+  }
 }
 </script>
 

@@ -15,9 +15,11 @@ const mutations = {
   },
   SET_TOKEN: (state, token) => {
     state.token = token
+    localStorage.setItem('token', token)
   },
   SET_NAME: (state, name) => {
     state.name = name
+    localStorage.setItem('name', name)
   }
 }
 

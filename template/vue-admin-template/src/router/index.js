@@ -58,6 +58,27 @@ export const constantRoutes = [
   { path: '*', redirect: '/404', hidden: true }
 ]
 
+export const asyncRoutes = [
+  {
+    path: '/user',
+    component: Layout,
+    meta: { roles: ['admin'], title: '用户管理', icon: 'dashboard' },
+    children: [
+      {
+        path: '/info',
+        name: 'UserInfo',
+        meta: { roles: ['admin'], title: '用户信息' },
+        component: () => import('@/views/user/info')
+      },
+      {
+        path: '/manage',
+        name: 'Manage',
+        meta: { roles: ['admin'], title: '用户管理' },
+        component: () => import('@/views/user/manage')
+      }
+    ]
+  }
+]
 const createRouter = () => new Router({
   // mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),

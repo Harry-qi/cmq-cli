@@ -54,7 +54,6 @@
 
 <script>
 import { validUsername } from '@/utils/validate'
-import { setToken } from '@/utils/auth'
 
 export default {
   name: 'Login',
@@ -110,13 +109,26 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          if (this.loginForm.username === 'admin' && this.loginForm.password === '111111') {
-            setToken('admin')
+          this.$store.commit('permission/setRoles', 'admin')
+          this.$store.dispatch('permission/generateRoutes').then(() => {
+            this.$store.commit('user/SET_NAME', this.loginForm.username)
+            this.$store.commit('user/SET_TOKEN', 'aaaa')
+            localStorage.getItem('token')
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
-          } else {
-            this.$message.error('账号密码错误！')
-          }
+          })
+
+          // this.api.login({
+          //   userName: this.loginForm.username,
+          //   passWd: this.loginForm.password
+          // }).then(res => {
+          //   if (res.data) {
+          //     this.$store.commit('user/SET_NAME', this.loginForm.username)
+          //     this.$store.commit('user/SET_TOKEN', res.data)
+          //     this.$router.push({ path: this.redirect || '/' })
+          //     this.loading = false
+          //   }
+          // })
         }
       })
     }
