@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <search-input v-model="searchWord" @search="search" />
+    <van-search v-model="searchWord" placeholder="请输入搜索关键词" />
+
   </div>
 </template>
 
