@@ -8,6 +8,8 @@ const chalk = require("chalk"); // 给终端的字体加上颜色
 
 const path = require('path');
 const fs = require('fs');
+const child_process = require('child_process');
+
 
 const { copyDir } = require('./utils')
 // cli版本
@@ -63,20 +65,35 @@ function downloadTemplate(gitUrl, projectName) {
     );
   });
 }
+// 瞎子远程仓库
 async function downloadGitTemplate(projectName, gitUrl) {
   console.log(
       chalk.bold.cyan("cmq_cli: ") + "creating..."
   );
   try {
-    await checkName(projectName);
-    await downloadTemplate(gitUrl, projectName)
-    console.log(chalk.green("download completed"));
-    console.log(
-        chalk.bold.cyan("cmq_cli: ") + "finished!"
-    );
+    await checkName(projectName); // 检查项目名
+    await downloadTemplate(gitUrl, projectName) // 下载模板
+    installDependencies(projectName)  // 安装依赖
   } catch (error) {
     console.log(chalk.red(error));
   }
+}
+// 安装依赖
+function installDependencies(filename) {
+    console.log("Dependencies are being installed, it may take a few minutes");
+    const spinner = spin("downloading...",'Box1');
+    spinner.start()
+    child_process.exec('npm i',{cwd: path.resolve(process.cwd(), filename)}, (error)=>{
+      if(error){
+        console.error(error)
+        return
+      }
+      spinner.stop();
+      console.log(
+        chalk.bold.cyan("cmq_cli: ") + "finished!"
+      );
+    })
+
 }
 // 选择以自定义模板还是git的模板
 function checkTem(template,filename){
@@ -84,10 +101,8 @@ function checkTem(template,filename){
   if(customTem.indexOf(template)>=0){
     let sourceDir = resolvePath(`./template/${template}`)
     let targetDir = path.resolve(`${process.cwd()}/${filename}`)
-    copyDir(sourceDir, targetDir).then(()=>{
-      console.log(
-          chalk.bold.cyan("cmq_cli: ") + "finished!"
-      );
+    copyDir(sourceDir, targetDir).then(async ()=>{
+      installDependencies(filename)
     })
   }else {
     let downloadList = {

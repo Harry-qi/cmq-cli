@@ -1,10 +1,13 @@
 {
   "name": "cmq_cli",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "author": "Harry-qi",
   "description": "",
   "main": "index.js",
-  "keywords":["template","cli"],
+  "keywords": [
+    "template",
+    "cli"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/Harry-qi/cmq-cli"
