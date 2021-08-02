@@ -57,7 +57,6 @@ function downloadTemplate(gitUrl, projectName) {
         function (err) {
           if (err) {
             return reject(err);
-            spinner.stop()
           }
           spinner.stop()
           resolve();
@@ -65,7 +64,7 @@ function downloadTemplate(gitUrl, projectName) {
     );
   });
 }
-// 瞎子远程仓库
+// 下载远程仓库
 async function downloadGitTemplate(projectName, gitUrl) {
   console.log(
       chalk.bold.cyan("cmq_cli: ") + "creating..."
@@ -97,24 +96,21 @@ function installDependencies(filename) {
 }
 // 选择以自定义模板还是git的模板
 function checkTem(template,filename){
-  let customTem = [ 'mobile-template', 'vue-admin-template']
-  if(customTem.indexOf(template)>=0){
-    let sourceDir = resolvePath(`./template/${template}`)
-    let targetDir = path.resolve(`${process.cwd()}/${filename}`)
-    copyDir(sourceDir, targetDir).then(async ()=>{
-      installDependencies(filename)
-    })
-  }else {
-    let downloadList = {
-        "vue-element-admin": {
-          src: "https://github.com:PanJiaChen/vue-element-admin#master"
-        },
-        "ts-vue": {
-          src: "https://github.com:easy-wheel/ts-vue#master",
-        }
-    }
-    downloadGitTemplate(filename,downloadList[template].src)
+  let downloadList = {
+      "vant-mobile-template": {
+        src: "https://github.com/Harry-qi/vant-mobile-template"
+      },
+      "vue2-template": {
+        src: "https://github.com/Harry-qi/vue2-tempalte#master"
+      },
+      "vue2-simple-admin": {
+        src: "https://github.com/Harry-qi/vue-admin-template#master"
+      },
+      "vue-element-admin": {
+        src: "https://github.com:PanJiaChen/vue-element-admin#master"
+      }
   }
+  downloadGitTemplate(filename,downloadList[template].src)
 }
 // 设置选项
 program
