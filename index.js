@@ -96,15 +96,16 @@ function installDependencies(filename) {
 }
 // 选择以自定义模板还是git的模板
 function checkTem(template,filename){
+  "https://github.com:easy-wheel/ts-vue#master"
   let downloadList = {
       "vant-mobile-template": {
-        src: "https://github.com/Harry-qi/vant-mobile-template"
+        src: "https://github.com:Harry-qi/vant-mobile-template#master"
       },
       "vue2-template": {
-        src: "https://github.com/Harry-qi/vue2-tempalte#master"
+        src: "https://github.com:Harry-qi/vue2-tempalte#master"
       },
       "vue2-simple-admin": {
-        src: "https://github.com/Harry-qi/vue-admin-template#master"
+        src: "https://github.com:Harry-qi/vue-admin-template#master"
       },
       "vue-element-admin": {
         src: "https://github.com:PanJiaChen/vue-element-admin#master"
