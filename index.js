@@ -80,7 +80,7 @@ async function downloadGitTemplate(projectName, gitUrl) {
 // 安装依赖
 function installDependencies(filename) {
     console.log("Dependencies are being installed, it may take a few minutes");
-    const spinner = spin("downloading...",'Box1');
+    const spinner = spin("Dependencies downloading...",'Box1');
     spinner.start()
     child_process.exec('npm i',{cwd: path.resolve(process.cwd(), filename)}, (error)=>{
       if(error){
@@ -96,7 +96,6 @@ function installDependencies(filename) {
 }
 // 选择以自定义模板还是git的模板
 function checkTem(template,filename){
-  "https://github.com:easy-wheel/ts-vue#master"
   let downloadList = {
       "vant-mobile-template": {
         src: "https://github.com:Harry-qi/vant-mobile-template#master"
