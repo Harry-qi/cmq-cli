@@ -98,16 +98,16 @@ function installDependencies(filename) {
 function checkTem(template,filename){
   let downloadList = {
       "vant-mobile-template": {
-        src: "https://github.com:Harry-qi/vant-mobile-template#master"
+        src: "https://github.com:Harry-qi/vant-mobile-template#master.git"
       },
       "vue2-template": {
-        src: "https://github.com:Harry-qi/vue2-tempalte#master"
+        src: "https://github.com:Harry-qi/vue2-tempalte#master.git"
       },
       "vue2-simple-admin": {
-        src: "https://github.com:Harry-qi/vue-admin-template#master"
+        src: "https://github.com:Harry-qi/vue-admin-template#master.git"
       },
       "vue-element-admin": {
-        src: "https://github.com:PanJiaChen/vue-element-admin#master"
+        src: "https://github.com:PanJiaChen/vue-element-admin#master.git"
       }
   }
   downloadGitTemplate(filename,downloadList[template].src)
