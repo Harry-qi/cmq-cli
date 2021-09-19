@@ -5,6 +5,6 @@ let downloadList = [
   "vue2-simple-admin",
   "vue-element-admin"
 ]
-module.exports = [
+export default  [
     ...downloadList
 ]
