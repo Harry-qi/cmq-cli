@@ -1,17 +1,17 @@
 #!/usr/bin/env node
-import { program } from 'commander';   // 命令行
-import inquirer from 'inquirer';       // 交互式的命令
-import download from "download-git-repo";  // 下载并提取 git 仓库，用于下载项目模板
-import ora from 'ora';
-import chalk from "chalk"; // 给终端的字体加上颜色
+const { program } = require('commander');   // 命令行
+const inquirer = require('inquirer');       // 交互式的命令
+const download = require("download-git-repo");  // 下载并提取 git 仓库，用于下载项目模板
+const spin = require('io-spin');
+const chalk = require("chalk"); // 给终端的字体加上颜色
 
-import path from 'path';
-import fs from 'fs';
-import child_process from 'child_process';
+const path = require('path');
+const fs = require('fs');
+const child_process = require('child_process');
 
-import downloadList from './template/index.js'
-
+const downloadList = require('./template/index');
 const templates = Object.keys(downloadList)
+
 // 命令行选择列表
 let promptList = [
   {
@@ -39,7 +39,8 @@ function checkName(projectName) {
 }
 // 下载git仓库
 function downloadTemplate(gitUrl, projectName) {
-  const spinner = ora("downloading...",'Box1').start()
+  const spinner = spin("downloading...")
+  spinner.start()
   return new Promise((resolve, reject) => {
     download(
         gitUrl,
@@ -72,7 +73,8 @@ async function downloadGitTemplate(projectName, gitUrl) {
 // 安装依赖
 function installDependencies(filename) {
   console.log("Dependencies are being installed, it may take a few minutes");
-  const spinner = ora("Dependencies downloading...",'Box1').start();
+  const spinner = spin("Dependencies downloading...")
+  spinner.start()
   child_process.exec('npm i',{cwd: path.resolve(process.cwd(), filename)}, (error)=>{
     if(error){
       console.error(error)
@@ -117,7 +119,11 @@ async function setPackageContent(projectName) {
     );
   });
 }
-
+// 获取文件路径
+function resolvePath(pathName){
+  const __dirname = path.resolve(path.dirname(''));
+  return path.resolve(path.join(__dirname, pathName))
+}
 // 设置选项
 program
   .command('create <filename>')
@@ -129,10 +135,7 @@ program
   })
 
 // cli版本
-const packageData = fs.readFileSync('./package.json', 'utf8')
-const version = JSON.parse(packageData).version
-program.version(version, '-v, --version, -V', 'cli的最新版本号');
-
+program.version(require('./package').version, '-v, --version, -V', 'cli的最新版本号');
 // 处理命令行输入的参数
 program.parse(process.argv);
 

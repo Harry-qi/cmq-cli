@@ -13,4 +13,4 @@ let downloadList = {
     src: "direct:https://github.com/PanJiaChen/vue-element-admin.git"
   }
 }
-export default  downloadList
+module.exports = downloadList
